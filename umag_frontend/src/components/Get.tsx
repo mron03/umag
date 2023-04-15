@@ -1,7 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { GetEnum } from "../type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const Get = ({ type }: { type: boolean }) => {
   const {
@@ -11,12 +12,26 @@ export const Get = ({ type }: { type: boolean }) => {
   } = useForm<GetEnum>();
 
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [data, setData] = useState<GetEnum>({});
+  const [data, setData] = useState<GetEnum>({
+    barcode: "", 
+    fromTime: "", 
+    toTime: ""
+  });
+  const [resData, setResData] = useState(); 
 
   const onSubmit: SubmitHandler<GetEnum> = (data) => {
     setData(data);
     setSubmitted((prevState) => !prevState);
   };
+
+  useEffect(() => { 
+    axios.get(`http://127.0.0.1:8000/api/supplies?barcode=${data.barcode}&fromTime=${data.fromTime.replace('T', '%20')}&toTime=${data.toTime.replace('T', '%20')}`)
+      .then(res => {
+         setResData(res.data); 
+      })
+  }, [submitted])
+
+  console.log(resData); 
 
   return (
     <div className="h-screen w-screen flex justify-center items-center">

@@ -1,7 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { GetIdEnum } from "../type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 export const GetId = ({ type }: { type: boolean }) => {
   const {
@@ -12,17 +13,27 @@ export const GetId = ({ type }: { type: boolean }) => {
 
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [data, setData] = useState<GetIdEnum>({});
+  const [resData, setResData] = useState({}); 
 
   const onSubmit: SubmitHandler<GetIdEnum> = (data) => {
     setData(data);
     setSubmitted((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/api/supplies/${data.id}`)
+      .then(res => {
+        const data = res.data;
+        setResData(data);  
+      })
+    }, [submitted]); 
+    
+    console.log(resData); 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
       {submitted ? (
         <div className="border border-orange-500 p-10 space-y-10">
-          {data.id}
+          {resData.barcode} {resData.price}
         </div>
       ) : (
         <div className="border border-orange-500 p-10 space-y-10">
