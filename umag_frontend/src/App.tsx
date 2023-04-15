@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center space-y-10">
+    <div className="w-screen h-screen flex flex-col justify-center items-center space-y-10 bg-gradient-to-tr from-fuchsia-300 to-sky-500">
       <div className="flex space-x-10">
-        <div className="border border-orange-500 p-5 space-y-5">
-          <h1 className="text-center text-2xl">Supply</h1>
+        <div className="p-5 space-y-5 bg-sky-100 rounded">
+          <h1 className="text-center tracking-wide text-3xl text-gray-900">Supply</h1>
           <ul className="p-5 space-y-5">
             <li className="underline underline-offset-8 hover:text-blue-500">
               <Link to={"getsupply"}>Get supply</Link>
@@ -24,8 +24,8 @@ const App = () => {
             </li>
           </ul>
         </div>
-        <div className="border border-orange-500 p-5 space-y-5">
-          <h1 className="text-center text-2xl">Sale</h1>
+        <div className="p-5 space-y-5 bg-sky-100 rounded">
+          <h1 className="text-center tracking-wide text-3xl text-gray-900">Sale</h1>
           <ul className="p-5 space-y-5">
             <li className="underline underline-offset-8 hover:text-blue-500">
               <Link to={"getsale"}>Get sale</Link>
@@ -45,8 +45,8 @@ const App = () => {
           </ul>
         </div>
       </div>
-      <div className="border border-orange-500 p-5 space-y-5 w-1/3 text-center">
-        <h1 className="text-2xl">Report</h1>
+      <div className="p-5 space-y-5 w-1/3 text-center bg-sky-100 rounded">
+        <h1 className="tracking-wide text-3xl text-gray-900">Report</h1>
         <div>
           <Link
             to={"getreport"}

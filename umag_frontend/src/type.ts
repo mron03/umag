@@ -1,5 +1,13 @@
-export type GetIdEnum = {
+export type GetIdReq = {
   id: string;
+};
+
+export type GetIdRes = {
+  id: number;
+  barcode: number;
+  price: number; 
+  quantity: number;
+  supplyTime: string; 
 };
 
 export type GetEnum = {
