@@ -21,14 +21,11 @@ export const GetId = ({ type }: { type: boolean }) => {
   };
 
   useEffect(() => {
-    const resData: GetIdRes = {
-      id: 1,
-      barcode: 1,
-      price: 1,
-      quantity: 1,
-      supplyTime: "2022-12-28 11:00:02",
-    };
-    setResData(resData);
+    axios.get(`https://your_server/api/{type ? "supply" : "sale"}/{reqData.id}`)
+     .then(res => {
+       const resData: GetIdRes = res
+       setResData(resData);
+      })
   }, [submitted]);
 
   return (
