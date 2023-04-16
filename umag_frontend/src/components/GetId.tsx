@@ -23,7 +23,7 @@ export const GetId = ({ type }: { type: boolean }) => {
   useEffect(() => {
     axios.get(`https://your_server/api/{type ? "supply" : "sale"}/{reqData.id}`)
      .then(res => {
-       const resData: GetIdRes = res
+       const resData: GetIdRes = res.data
        setResData(resData);
       })
   }, [submitted]);
